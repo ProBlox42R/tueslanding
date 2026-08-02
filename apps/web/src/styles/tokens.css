@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Дизайн токени (Material 3 принципи).
+ *
+ * ВАЖНО: --color-brand остава ЕДИН И СЪЩ в светла и тъмна тема (#ED6C66,
+ * съгласно спецификацията на "Билети") — само повърхностите, фона и текста
+ * се сменят между темите. Темата се превключва чрез клас `.dark` на <html>.
+ */
+
+:root {
+  --color-brand: #ed6c66;
+  --color-brand-on: #ffffff;
+
+  --color-background: #fbf8f7;
+  --color-surface: #ffffff;
+  --color-surface-variant: #f2eae8;
+  --color-surface-container: #f5f0ee;
+  --color-outline: #857370;
+  --color-outline-variant: #d8c2be;
+
+  --color-text: #201a19;
+  --color-text-muted: #53433f;
+
+  --color-success: #2e7d32;
+  --color-success-container: #d7f5d9;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-warning: #8a5b00;
+  --color-warning-container: #ffe0b3;
+}
+
+.dark {
+  --color-brand: #ed6c66;
+  --color-brand-on: #3b0906;
+
+  --color-background: #1c1210;
+  --color-surface: #241a18;
+  --color-surface-variant: #3a2b28;
+  --color-surface-container: #2b201d;
+  --color-outline: #a08c88;
+  --color-outline-variant: #4d3c38;
+
+  --color-text: #f0dedb;
+  --color-text-muted: #d7c2be;
+
+  --color-success: #9ada9d;
+  --color-success-container: #164719;
+  --color-error: #ffb4ab;
+  --color-error-container: #690005;
+  --color-warning: #ffcb7a;
+  --color-warning-container: #4d3400;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Material 3 style утилити класове, изградени върху токените по-горе. */
+
+.m3-surface {
+  background-color: var(--color-surface);
+  border-radius: 16px;
+}
+
+.m3-card {
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--color-outline-variant);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+a.m3-card:hover,
+button.m3-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brand);
+}
+
+.m3-btn-filled {
+  background: linear-gradient(135deg, var(--color-brand) 0%, #e05650 100%);
+  color: var(--color-brand-on);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(237, 108, 102, 0.35);
+  transition:
+    filter 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+}
+.m3-btn-filled:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 4px 10px rgba(237, 108, 102, 0.4);
+}
+.m3-btn-filled:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.m3-btn-filled:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.m3-btn-outlined {
+  background-color: transparent;
+  color: var(--color-brand);
+  border: 1px solid var(--color-outline);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+.m3-btn-outlined:hover:not(:disabled) {
+  background-color: var(--color-surface-variant);
+  border-color: var(--color-brand);
+}
+.m3-btn-outlined:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.m3-btn-outlined:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.m3-btn-text {
+  background-color: transparent;
+  color: var(--color-brand);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+.m3-btn-text:hover:not(:disabled) {
+  background-color: var(--color-surface-variant);
+}
+.m3-btn-text:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.m3-input {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--color-text);
+  width: 100%;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.m3-input:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(237, 108, 102, 0.18);
+}
+
+.m3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid var(--color-outline-variant);
+}
+
+/* Тънък, дискретен scrollbar — най-вече за хоризонталните nav ленти на мобилни. */
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline-variant);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Лек fade-in за основното съдържание при навигация. */
+main {
+  animation: m3-fade-in 0.25s ease;
+}
+@keyframes m3-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
